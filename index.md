@@ -32,4 +32,4 @@ In future versions, minimal anonymous analytics may be used to improve app perfo
 
 If you have questions about this Privacy Policy, please contact:
 
-your-email@example.com
+topsintenz@gmail.com
