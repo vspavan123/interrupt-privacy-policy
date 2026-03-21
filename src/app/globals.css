@@ -1,26 +1,254 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-outfit);
+
+  /* Light palette */
+  --color-cream: #faf7f2;
+  --color-ivory: #f5f0e8;
+  --color-sage: #9caf88;
+  --color-sage-dark: #7a9466;
+  --color-gold: #c9a96e;
+  --color-gold-light: #e0cc9d;
+  --color-warm-gray: #8a8278;
+
+  /* Dark palette */
+  --color-charcoal: #0a0a0a;
+  --color-deep-black: #050505;
+  --color-ember: #ffffff;
+  --color-ember-glow: #cccccc;
+  --color-crimson: #222222;
+  --color-crimson-dark: #111111;
+  --color-ash: #2a2a2a;
+  --color-smoke: #1a1a1a;
+  --color-neon: #a1ff00;
+  /* Nitro style neon accent */
+  --glow-border: rgba(255, 255, 255, 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #050505;
+  --foreground: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-sage);
+  color: white;
+}
+
+/* Role flipper styles */
+.role-flipper {
+  display: inline-block;
+  position: relative;
+  height: 1.3em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+/* Naruto eye animations */
+@keyframes sharingan-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes eye-glow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 12px #cc2936) drop-shadow(0 0 30px #e8641a);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 20px #cc2936) drop-shadow(0 0 50px #e8641a);
+  }
+}
+
+@keyframes fire-flicker {
+
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scaleY(1) translateY(0);
+  }
+
+  25% {
+    opacity: 1;
+    transform: scaleY(1.05) translateY(-2px);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scaleY(0.98) translateY(1px);
+  }
+
+  75% {
+    opacity: 1;
+    transform: scaleY(1.03) translateY(-1px);
+  }
+}
+
+@keyframes flame-dance {
+  0% {
+    transform: translateX(0) scaleX(1);
+  }
+
+  25% {
+    transform: translateX(-3px) scaleX(1.02);
+  }
+
+  50% {
+    transform: translateX(2px) scaleX(0.98);
+  }
+
+  75% {
+    transform: translateX(-1px) scaleX(1.01);
+  }
+
+  100% {
+    transform: translateX(0) scaleX(1);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+
+  33% {
+    transform: translateY(-15px) translateX(5px);
+  }
+
+  66% {
+    transform: translateY(-5px) translateX(-5px);
+  }
+}
+
+.animate-sharingan-spin {
+  animation: sharingan-spin 8s linear infinite;
+}
+
+.animate-eye-glow {
+  animation: eye-glow 3s ease-in-out infinite;
+}
+
+.animate-fire-flicker {
+  animation: fire-flicker 0.4s ease-in-out infinite;
+}
+
+.animate-flame-dance {
+  animation: flame-dance 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+/* Scroll indicator bounce */
+@keyframes bounce-down {
+
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+}
+
+.animate-bounce-down {
+  animation: bounce-down 2s ease-in-out infinite;
+}
+
+/* CTA button glow */
+@keyframes btn-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(232, 100, 26, 0.3), 0 0 30px rgba(232, 100, 26, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(232, 100, 26, 0.5), 0 0 50px rgba(232, 100, 26, 0.2);
+  }
+}
+
+.animate-btn-glow {
+  animation: btn-glow 2.5s ease-in-out infinite;
+}
+
+/* Phoenix rising ember particles */
+@keyframes rise-particle {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(-100vh) scale(0.3);
+    opacity: 0;
+  }
 }
